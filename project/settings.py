@@ -23,9 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-&+l@#&sbqen9xbyz_9o5=w)j7ouc*4ab=_v4k*!*4e6fb2hark'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ["192.168.3.144:8000", "192.168.3.144", "localhost:8080", "localhost", '127.0.0.1']
+ALLOWED_HOSTS = ["workers.uz", "www.workers.uz"]
 
 
 # Application definition
@@ -53,7 +53,15 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'project.urls'
+SECURE_SSL_REDIRECT = True
 
+SESSION_COOKIE_SECURE = True
+
+CSRF_COOKIE_SECURE = True
+
+SECURE_HSTS_SECONDS = 31536000 (bosqichma-bosqich yoqing)
+
+X_FRAME_OPTIONS = 'DENY'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -75,14 +83,19 @@ WSGI_APPLICATION = 'project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
+
+
+import os
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.environ.get('DB_NAME', 'myproject'),
+        'USER': os.environ.get('DB_USER', 'myprojectuser'),
+        'PASSWORD': os.environ.get('DB_PASS', 'bekzodbek'),
+        'HOST': os.environ.get('DB_HOST', 'localhost'),
+        'PORT': os.environ.get('DB_PORT', '5432'),
     }
 }
-
-
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
 
