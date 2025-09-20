@@ -1,0 +1,95 @@
+Main model
+
+Logo
+Icon
+phonenumber
+title 
+
+
+
+Slider model
+
+title
+description
+img
+
+
+About model
+
+title
+description
+image
+firstservice
+serviceabout
+secondservice
+serviceabout
+thirdservice
+serviceabout
+
+
+
+FAQ model
+
+question 
+answer 
+is_top 
+
+
+
+Products
+
+Image
+title
+category
+price
+status
+star
+Products
+size
+description
+image_2, image_3, image_4, image_5, image_6, extra_image
+is_active
+
+
+Customers model
+
+Full name
+Type
+comment
+star
+image
+
+
+Footer model
+instagram
+telegram
+youtube
+phonenumber
+Logo
+
+
+
+
+Contact_page model
+
+
+location
+email
+phonenumber
+
+
+Contact model
+
+
+Full name
+email
+subject
+phonenumber
+message
+
+
+
+
+
+
+
