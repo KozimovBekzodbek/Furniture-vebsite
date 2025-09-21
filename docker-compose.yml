@@ -1,0 +1,28 @@
+version: "3.8"
+services:
+  web:
+    build: .
+    command: gunicorn myproject.wsgi:application --bind 0.0.0.0:8000 --workers 3
+    volumes:
+      - .:/app
+      - ./static:/app/static   # collectstatic shu papkaga yozsin (host bilan bo'linadi)
+    env_file:
+      - .env
+    ports:
+      - "127.0.0.1:8000:8000"  # faqat host ichidan kirish (nginx host orqali)
+    depends_on:
+      - db
+    restart: unless-stopped
+
+  db:
+    image: postgres:15
+    environment:
+      - POSTGRES_DB=${DB_NAME}
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASS}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
